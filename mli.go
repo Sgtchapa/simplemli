@@ -221,7 +221,6 @@ func Decode(key string, b *[]byte) (int, error) {
 		}
 
 		// Remove MLI length and validate message length is valid
-		n = n - Size2BCD2
 		if n < 0 {
 			return 0, ErrLength
 		}
@@ -307,7 +306,7 @@ func Encode(key string, length int) ([]byte, error) {
 
 	case MLI2BCD2:
 		// Create MLI in Binary-Coded Decimal
-		h, err := hex.DecodeString(fmt.Sprintf("%04d", length+Size2BCD2)) // %04d is binary-coded decimal format, wrap in hex
+		h, err := hex.DecodeString(fmt.Sprintf("%02d", length)) // %04d is binary-coded decimal format, wrap in hex
 		if err != nil {
 			return empty, fmt.Errorf("unable to convert length to hex binary-coded decimal - %s", err)
 		}
