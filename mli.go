@@ -210,7 +210,7 @@ func Decode(key string, b *[]byte) (int, error) {
 			return 0, ErrByteSize
 		}
 
-		// Convert from hex to integer using Binary-Coded Decimal
+		// Convert from hexadecimal to integer using Binary-Coded Decimal
 		n, err := strconv.Atoi(hex.EncodeToString((*b)[2:4]))
 		if err != nil {
 			return 0, fmt.Errorf("could not convert hex string to integer - %s", err)
